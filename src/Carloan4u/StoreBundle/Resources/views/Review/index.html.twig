@@ -1,0 +1,49 @@
+<h1>Review list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Dealership</th>
+            <th>Rate</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Review_title</th>
+            <th>Review_description</th>
+            <th>Approved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('review_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <th>{{ entity.dealership.name }}</th>
+            <td>{{ entity.rate }}</td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.reviewtitle }}</td>
+            <td>{{ entity.reviewdescription }}</td>
+            <td>{{ entity.approved }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('review_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('review_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('review_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

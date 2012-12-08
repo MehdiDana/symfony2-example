@@ -1,0 +1,105 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Dealership{% endblock %}
+
+{% block body %}
+
+<h1>Dealership list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Opening_hours</th>
+            <th>Number_of_car</th>
+            <th>Image</th>
+            <th>Approved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('dealership_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.address }}</td>
+            <td>{{ entity.openinghours }}</td>
+            <td>{{ entity.numberofcar }}</td>
+            <td><img src="{{ entity.image }}" width="200px" /></td>
+            <td>{{ entity.approved }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('dealership_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('dealership_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('dealership_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+
+<h1>Review list</h1>
+
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Dealership</th>
+        <th>Rate</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Review_title</th>
+        <th>Review_description</th>
+        <th>Approved</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entitiy_review in entities_review %}
+        <tr>
+            <td><a href="{{ path('review_show', { 'id': entitiy_review .id }) }}">{{ entitiy_review .id }}</a></td>
+            <th>{{ entitiy_review.dealership.name }}</th>
+            <td>{{ entitiy_review.rate }}</td>
+            <td>{{ entitiy_review.name }}</td>
+            <td>{{ entitiy_review.email }}</td>
+            <td>{{ entitiy_review.reviewtitle }}</td>
+            <td>{{ entitiy_review.reviewdescription }}</td>
+            <td>{{ entitiy_review.approved }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('review_show', { 'id': entitiy_review.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('review_edit', { 'id': entitiy_review.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('review_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+
+{% endblock %}
